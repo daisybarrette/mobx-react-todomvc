@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {observer} from 'mobx-react';
 import {observable, expr} from 'mobx';
+import ToDoTags from './todoTags'; 
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;
