@@ -1,8 +1,13 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import {observer} from 'mobx-react';
 import TagsInput from 'react-tagsinput'
 
 //import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
-class ToDoTags extends React.Component {
+@observer
+export default class ToDoTags extends React.Component {
   constructor() {
     super()
     this.state = {tags: []}
@@ -13,6 +18,8 @@ class ToDoTags extends React.Component {
   }
 
   render() {
-    return <TagsInput value={this.state.tags} onChange={this.handleChange} />
+    return (
+      <TagsInput value={this.state.tags} onChange={this.handleChange} />
+      )
   }
 }
