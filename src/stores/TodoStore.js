@@ -40,6 +40,7 @@ export default class TodoStore {
 		this.todos.push(new TodoModel(this, Utils.uuid(), title, false));
 	}
 	
+	//copy of addTodo, replace with custom function later
 	addTags (tags) {
 		this.todos.push(new TodoModel(this, Utils.uuid(), tags, false));
 	}

@@ -40,27 +40,16 @@ export default class TodoItem extends React.Component {
 					onKeyDown={this.handleKeyDown}
 				/>
 				
-				
-				
 				<input
 					ref="editField"
-					
 					value={this.editTags}
 					onBlur={this.handleSubmitTags}
 					onChange={this.handleChangeTags}
 					onKeyDown={this.handleKeyDownTags}
-		
-					/>
-					
-				<input
-						className="toggle"
-						type="checkbox"
-						checked={todo.completed}
-						onChange={this.handleToggle}
-					/>
+				/>
 
-				
-				
+				{/*insert checkbox to delete tags*/}
+
 			</li>
 		);
 	}
@@ -77,7 +66,10 @@ export default class TodoItem extends React.Component {
 		this.props.viewStore.todoBeingEdited = null;
 	};
 	
-
+	/*user needs to input text for tags-- not sure what the most efficient way is,
+		so start by creating a text field similar to the title to get something working
+		(will need to further customize / change these functions later)
+	 */
 	handleEditTags = () => {
 		const todo = this.props.todo;
 		this.props.viewStore.todoBeingEdited = todo;
@@ -93,7 +85,6 @@ export default class TodoItem extends React.Component {
 		}
 	};	
 	
-	
 	handleChangeTags = (event) => {
 		this.editTags = event.target.value;
 	};
@@ -101,11 +92,6 @@ export default class TodoItem extends React.Component {
 	handleToggleTags = () => {
 		this.props.todo.toggleTagged();
 	};
-
-	
-	
-	
-
 	
 	handleSubmit = (event) => {
 		const val = this.editText.trim();

@@ -22,7 +22,7 @@ export default class TodoFooter extends React.Component {
 					{this.renderFilterLink(ALL_TODOS, "", "All")}
 					{this.renderFilterLink(ACTIVE_TODOS, "active", "Active")}
 					{this.renderFilterLink(COMPLETED_TODOS, "completed", "Completed")}
-					{this.renderFilterLink(TAGGED_TODOS, "tagged", "Tagged")}
+					{this.renderFilterLink(TAGGED_TODOS, "tagged", "Tagged")} {/*//keep track of tagged todos, some may be completed and some may be active */}
 				</ul>
 				{ todoStore.completedCount === 0
 					? null
@@ -36,6 +36,7 @@ export default class TodoFooter extends React.Component {
 		);
 	}
 
+	//not working properly for TAGGED_TODOS, adjust later
 	renderFilterLink(filterName, url, caption) {
 		return (<li>
 			<a href={"#/" + url}
