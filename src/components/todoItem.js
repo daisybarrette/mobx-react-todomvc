@@ -9,12 +9,14 @@ const ENTER_KEY = 13;
 @observer
 export default class TodoItem extends React.Component {
 	@observable editText = "";
+	@observable editTag = [];
 
 	render() {
 		const {viewStore, todo} = this.props;
 		return (
 			<li className={[
 				todo.completed ? "completed": "",
+				todo.tagged ? "tagged": "",
 				expr(() => todo === viewStore.todoBeingEdited ? "editing" : "")
 			].join(" ")}>
 				<div className="view">
@@ -37,10 +39,74 @@ export default class TodoItem extends React.Component {
 					onChange={this.handleChange}
 					onKeyDown={this.handleKeyDown}
 				/>
+				
+				
+				
+				<input
+					ref="editField"
+					
+					value={this.editTags}
+					onBlur={this.handleSubmitTags}
+					onChange={this.handleChangeTags}
+					onKeyDown={this.handleKeyDownTags}
+		
+					/>
+					
+				<input
+						className="toggle"
+						type="checkbox"
+						checked={todo.completed}
+						onChange={this.handleToggle}
+					/>
+
+				
+				
 			</li>
 		);
 	}
 
+	
+	handleSubmitTags = (event) => {
+		const val = this.editTags.trim();
+		if (val) {
+			this.props.todo.setTags(val);
+			this.editTags = val;
+		} else {
+			this.handleDestroy();
+		}
+		this.props.viewStore.todoBeingEdited = null;
+	};
+	
+
+	handleEditTags = () => {
+		const todo = this.props.todo;
+		this.props.viewStore.todoBeingEdited = todo;
+		this.editTags = todo.tags;
+	};
+	
+	handleKeyDownTags = (event) => {
+		if (event.which === ESCAPE_KEY) {
+			this.editTags = this.props.todo.tags;
+			this.props.viewStore.todoBeingEdited = null;
+		} else if (event.which === ENTER_KEY) {
+			this.handleSubmitTags(event);
+		}
+	};	
+	
+	
+	handleChangeTags = (event) => {
+		this.editTags = event.target.value;
+	};
+
+	handleToggleTags = () => {
+		this.props.todo.toggleTagged();
+	};
+
+	
+	
+	
+
+	
 	handleSubmit = (event) => {
 		const val = this.editText.trim();
 		if (val) {
