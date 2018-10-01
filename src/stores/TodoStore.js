@@ -16,6 +16,7 @@ export default class TodoStore {
 	@computed get completedCount() {
 		return this.todos.length - this.activeTodoCount;
 	}
+	
 
 	subscribeServerToStore() {
 		reaction(
@@ -37,6 +38,10 @@ export default class TodoStore {
 
 	addTodo (title) {
 		this.todos.push(new TodoModel(this, Utils.uuid(), title, false));
+	}
+	
+	addTags (tags) {
+		this.todos.push(new TodoModel(this, Utils.uuid(), tags, false));
 	}
 
 	toggleAll (checked) {

@@ -5,16 +5,23 @@ export default class TodoModel {
 	id;
 	@observable title;
 	@observable completed;
+	@observable tags;
+	
 
-	constructor(store, id, title, completed) {
+	constructor(store, id, title, completed, tags) {
 		this.store = store;
 		this.id = id;
 		this.title = title;
 		this.completed = completed;
+		this.tags = tags;
 	}
 
 	toggle() {
 		this.completed = !this.completed;
+	}
+	
+	toggleTagged() {
+		this.tagged = !this.tagged;
 	}
 
 	destroy() {
@@ -23,6 +30,10 @@ export default class TodoModel {
 
 	setTitle(title) {
 		this.title = title;
+	}
+	
+	setTags(tags) {
+		this.tags = tags;
 	}
 
 	toJS() {
