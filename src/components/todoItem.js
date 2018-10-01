@@ -38,9 +38,9 @@ export default class TodoItem extends React.Component {
 					onChange={this.handleChange}
 					onKeyDown={this.handleKeyDown}
 				/>
-				<div>
-					<ToDoTags /> {/**/}
-				</div>
+				
+				<ToDoTags />
+				
 			</li>
 		);
 	}
