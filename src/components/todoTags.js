@@ -8,7 +8,7 @@ import TagsInput from 'react-tagsinput';
 
 @observer
 export default class ToDoTags extends React.Component {
-   constructor() {
+constructor() {
     super()
     this.state = {tags: [], tag: ''}
   }
@@ -19,19 +19,16 @@ export default class ToDoTags extends React.Component {
 
   handleChangeInput(tag) {
     this.setState({tag})
+    console.log(tag)
   }
-
 
   render() {
     return (
       <TagsInput
-        
         value={this.state.tags}
         onChange={this.handleChange}
         inputValue={this.state.tag}
         onChangeInput={this.handleChangeInput}
-        onlyUnique={true}
-
       />
     )
   }
