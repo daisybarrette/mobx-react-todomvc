@@ -8,39 +8,31 @@ import TagsInput from 'react-tagsinput';
 
 @observer
 export default class ToDoTags extends React.Component {
-  constructor() {
+   constructor() {
     super()
     this.state = {tags: [], tag: ''}
   }
 
   handleChange(tags) {
-    this.setState({tags: value})
+    this.setState({tags})
   }
 
   handleChangeInput(tag) {
     this.setState({tag})
   }
 
-defaultRenderLayout (tagComponents, inputComponent) {
-  return (
-    <span>
-      {tagComponents}
-      {inputComponent}
-    </span>
-  )
-}
-
 
   render() {
     return (
-
       <TagsInput
+        
         value={this.state.tags}
         onChange={this.handleChange}
         inputValue={this.state.tag}
         onChangeInput={this.handleChangeInput}
+        onlyUnique={true}
+
       />
-    
-      )
+    )
   }
 }
